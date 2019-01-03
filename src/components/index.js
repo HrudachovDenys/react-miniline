@@ -1,11 +1,9 @@
-import Header from './Header/Header'
 import NavBar from './NavBar/NavBar'
-import Content from './Content/Content'
 import Footer from './Footer'
+import Categories from './Categories/Categories'
 
 export {
-    Header,
     NavBar,
-    Content,
-    Footer
+    Footer,
+    Categories
 }

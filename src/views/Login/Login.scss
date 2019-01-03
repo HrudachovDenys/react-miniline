@@ -1,0 +1,99 @@
+.loginView {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__title {
+        color: white;
+        font-size: 16pt;
+        background-color: #1a2026;
+        width: 90%;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    &__errorMessage {
+        text-align: center;
+        height: 10px;
+        color: rgb(206, 48, 48);
+    }
+
+    &__form {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        color: white;
+
+        span {
+            margin-top: 50px;
+            text-align: right;
+            font-size: 14pt;
+            color: white;
+
+            label, a {
+                margin-top: 10px;
+                margin-right: 10px;
+                display: inline-block;
+            }
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
+
+            input[type='text'],
+            input[type='password'] {
+                width: 70%;
+                float: right;
+                padding: 8px;
+                background-color: #171d22;
+                border-radius: 5px;
+                border: 2px solid #1e262c;
+                outline: none;
+                color: white;
+                font-size: 14pt;
+
+                &:focus {
+                    background-color: #1e262c;
+                    border: 2px solid #171d22;
+                }
+            }
+
+            input[type='submit'] {
+                background-color: #1a2026;
+                border-radius: 3px;
+                border: none;
+                padding: 10px;
+                width: 370px;
+                float: left;
+                outline: none;
+                color: white;
+                font-size: 14pt;
+                margin-left: 220px;
+
+                &:hover {
+                    background:#060a0e;
+                    cursor: pointer;
+                }
+            }
+
+            input[type='checkbox'] {
+                float: left;
+                margin-right: 5px;
+                margin-left: 20px;
+            }
+
+            .form__label-checkbox {
+                float: left;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+        }
+    }
+}

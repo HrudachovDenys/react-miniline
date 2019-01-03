@@ -4,9 +4,7 @@ import './App.scss';
 import Routes from './Routes'
 
 import {
-    Header,
-    NavBar,
-    Content
+    NavBar
 } from './components'
 
 class App extends Component {
@@ -28,6 +26,10 @@ class App extends Component {
 
                     <div className="app__content">
                         <Routes />
+                    </div>
+
+                    <div className="app__footer">
+                        <p>All right reserved 2019</p>
                     </div>
                 
                 </div>

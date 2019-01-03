@@ -14,12 +14,14 @@ body {
     align-items: center;
 
     &__nav {
-        width: 96%;
+        width: 98%;
     }
     &__content {
         background-color: #0f0f12;;
-        width: 96%;
-        min-height: 700px;
+        width: 98%;
+        min-height: 60vh;
+        padding-top: 50px;
+        padding-bottom: 50px;
         display: flex;
         justify-content: center;
         align-items: baseline;
@@ -29,13 +31,20 @@ body {
         line-height: 100px;
         color: white;
     
-        &__img {
+        .header__img {
             margin-left: 10px;
         }
     
-        &__name {
+        .header__name {
             font-size: 30pt;
             font-weight: bold;
         }
     }
+
+    &__footer {
+        background-color: #1a2026;
+        text-align: center;
+        width: 98%;
+        line-height: 50px;
+      }
 }
