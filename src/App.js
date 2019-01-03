@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import './App.scss';
+import Routes from './Routes'
+
+import {
+    Header,
+    NavBar,
+    Content
+} from './components'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    render() {
+
+        return (
+            <Router>
+                <div className="app">
+
+                    <div className='app__header'>
+                        <img className='header__img' src="https://img.icons8.com/ios/60/ffffff/skydrive-filled.png" />
+                        <span className='header__name'>Miniline.net</span>
+                    </div>
+
+                    <div className="app__nav">
+                        <NavBar isAuth={true} profileID={22123}/>
+                    </div>
+
+                    <div className="app__content">
+                        <Routes />
+                    </div>
+                
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
