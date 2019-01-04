@@ -21,7 +21,7 @@ class App extends Component {
                     </div>
 
                     <div className="app__nav">
-                        <NavBar isAuth={true} profileID={22123}/>
+                        <NavBar isAuth={false} profileID={22123}/>
                     </div>
 
                     <div className="app__content">

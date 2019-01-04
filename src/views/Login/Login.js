@@ -12,21 +12,28 @@ class Login extends Component {
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onRememberChange = this.onRememberChange.bind(this);
 
-        this.state = { username: '', password: '', isRemember: false, error: '' };
+        this.state = { 
+            error: '',
+            username: '', 
+            password: '', 
+            isRemember: false
+        };
     }
 
     //Обработка отправки формы
     onSubmit(e) {
         e.preventDefault();
 
-        let regexUsername = /^[a-zA-Z][a-zA-Z0-9-_\.]{0,20}$/;
-        let regexPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+        let regexUsername = /^[a-zA-Z][a-zA-Z0-9]{0,20}$/;
+        let regexPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$/;
 
         let isValid = regexUsername.test(this.state.username) && regexPassword.test(this.state.password);
 
         if(!isValid) {
             this.setState({ error: 'Имя пользывателя или пароль введены не в верном формате!' });
             return;
+        } else {
+            this.setState({ error: '' });
         }
 
         //Тут должна быть отправка данных
@@ -46,19 +53,19 @@ class Login extends Component {
         return (
             <div className='loginView'>
 
-                <span className='loginView__title'>Авторизация</span>
+                <span className='global-title'>Авторизация</span>
 
                 <label className='loginView__errorMessage'>{this.state.error}</label>
 
                 <form className='loginView__form' onSubmit={this.onSubmit}>
 
                     <span>
-                        <label>Имя пользывателя: </label>
+                        <label>Имя пользывателя</label>
                         <input onChange={this.onUsernameChange} type='text' name='username' />
                     </span>
 
                     <span>
-                        <label>Пароль: </label>
+                        <label>Пароль</label>
                         <input onChange={this.onPasswordChange} type='password' name='password' />
                     </span>
 
