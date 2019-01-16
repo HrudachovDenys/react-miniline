@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 import Routes from './Routes'
+import { connect } from 'react-redux';
+import { isAuth } from './store/actions/Auth';
 
 import {
     NavBar
 } from './components'
 
 class App extends Component {
+
+    constructor(props){
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.authVerification();
+    }
 
     render() {
 
@@ -16,20 +26,20 @@ class App extends Component {
                 <div className="app">
 
                     <div className='app__header'>
-                        <img className='header__img' src="https://img.icons8.com/ios/60/ffffff/skydrive-filled.png" />
+                        <img className='header__img' src="https://img.icons8.com/ios/60/ffffff/skydrive-filled.png" alt="" />
                         <span className='header__name'>Miniline.net</span>
                     </div>
 
                     <div className="app__nav">
-                        <NavBar isAuth={false} profileID={22123}/>
+                        <NavBar isAuth={this.props.isAuth}/>
                     </div>
 
                     <div className="app__content">
-                        <Routes />
+                        <Routes isAuth={this.props.isAuth} regMessageSuccess={this.props.regMessageSuccess}/>
                     </div>
 
                     <div className="app__footer">
-                        <p>All right reserved 2019</p>
+                        <p>All right reserved 2019 {}</p>
                     </div>
                 
                 </div>
@@ -38,4 +48,17 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = store => {
+    return {
+        isAuth: store.Login.isAuth,
+        regMessageSuccess: store.Registration.successMessage
+    }
+}
+  
+const mapDispatchToProps = dispatch => {
+    return {
+        authVerification: () => dispatch(isAuth())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

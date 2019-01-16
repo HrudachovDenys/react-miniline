@@ -1,0 +1,24 @@
+.admin__nav {
+    background-color: #1a2026;
+    border-radius: 5px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 12pt;
+
+    li {
+        a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 15px;
+            padding-left: 30px;
+            padding-right: 50px;
+        }
+    }
+    :hover {
+        background:#060a0e;
+        cursor: pointer;
+    }
+}

@@ -68,7 +68,7 @@ class PasswordRecovery extends Component {
     onRequestRecovery(e) {
         e.preventDefault();
 
-        if(this.state.email == '') {
+        if(this.state.email === '') {
             this.setState({ error: 'Заполните поле e-mail' });
         } else {
             this.setState({ error: '' });
@@ -87,7 +87,7 @@ class PasswordRecovery extends Component {
 
         if(!isNotEmptyField) {
             this.setState({ error: 'Заполните все поля' });
-        } else if(this.state.password != this.state.confirmPassword) {
+        } else if(this.state.password !== this.state.confirmPassword) {
             this.setState({ error: 'Пароли не совпадают' });
         } else if(!regexPassword.test(this.state.password)) {
             this.setState({ error: 'Пароль должен содержать как минимум 1 большую и 1 маленькую букву a-Z и 1 цифру и должен быть более 8 символов' });

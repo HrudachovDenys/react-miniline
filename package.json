@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -43,8 +44,12 @@
     "react-app-polyfill": "^0.2.0",
     "react-dev-utils": "^7.0.0",
     "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "resolve": "1.8.1",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
@@ -116,6 +121,7 @@
   },
   "devDependencies": {
     "node-sass": "^4.11.0",
+    "redux-devtools": "^3.5.0",
     "sass-loader": "^7.1.0"
   }
 }

@@ -6,7 +6,6 @@ import { Categories } from '../../components';
 class Articles extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {

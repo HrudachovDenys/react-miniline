@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Login.scss';
+import { login, isAuth } from '../../store/actions/Auth';
 
 class Login extends Component {
 
@@ -12,8 +14,7 @@ class Login extends Component {
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onRememberChange = this.onRememberChange.bind(this);
 
-        this.state = { 
-            error: '',
+        this.state = {
             username: '', 
             password: '', 
             isRemember: false
@@ -24,19 +25,7 @@ class Login extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        let regexUsername = /^[a-zA-Z][a-zA-Z0-9]{0,20}$/;
-        let regexPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-
-        let isValid = regexUsername.test(this.state.username) && regexPassword.test(this.state.password);
-
-        if(!isValid) {
-            this.setState({ error: 'Имя пользывателя или пароль введены не в верном формате!' });
-            return;
-        } else {
-            this.setState({ error: '' });
-        }
-
-        //Тут должна быть отправка данных
+        this.props.loginAction(this.state.username, this.state.password).then(() => this.props.isAuth());
     }
 
     onUsernameChange(e) {
@@ -55,7 +44,7 @@ class Login extends Component {
 
                 <span className='global-title'>Авторизация</span>
 
-                <label className='loginView__errorMessage'>{this.state.error}</label>
+                <label className='loginView__errorMessage'>{this.props.error}</label>
 
                 <form className='loginView__form' onSubmit={this.onSubmit}>
 
@@ -87,4 +76,18 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = store => {
+    return {
+        error: store.Login.error
+    }
+}
+  
+const mapDispatchToProps = dispatch => {
+    return {
+        loginAction: (username, password) => dispatch(login(username, password)),
+        isAuth: () => dispatch(isAuth())
+    }
+}
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './Registration.scss';
+import { registration } from '../../store/actions/Auth';
 
 class Registration extends Component {
 
@@ -13,8 +14,7 @@ class Registration extends Component {
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onConfirmPasswordChange = this.onConfirmPasswordChange.bind(this);
 
-        this.state = { 
-            error: '',
+        this.state = {
             username: '',
             email: '', 
             password: '',
@@ -25,25 +25,12 @@ class Registration extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        let regexUsername = /^[a-zA-Z][a-zA-Z0-9]{0,20}$/;
-        let regexPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-
-        let isNotEmptyField = this.state.username && 
-                            this.state.email && 
-                            this.state.password && 
-                            this.state.confirmPassword;
-
-        if(!isNotEmptyField) {
-            this.setState({ error: 'Не все поля заполнены' });
-        } else if(this.state.password != this.state.confirmPassword) {
-            this.setState({ error: 'Пароли не совпадают' });
-        } else if(!regexUsername.test(this.state.username)) {
-            this.setState({ error: 'Имя пользывателя должно начинаться с буквы a-Z, может содержать буквы латинского алфавита и цифры' });
-        } else if(!regexPassword.test(this.state.password)) {
-            this.setState({ error: 'Пароль должен содержать как минимум 1 большую и 1 маленькую букву a-Z и 1 цифру и должен быть более 8 символов' });
-        } else {
-            this.setState({ error: '' });
-        }
+        this.props.registrationAction(
+            this.state.username,
+            this.state.email,
+            this.state.password,
+            this.state.confirmPassword
+        );
     }
 
     onUsernameChange(e) {
@@ -65,7 +52,7 @@ class Registration extends Component {
 
                 <span className='global-title'>Регистрация</span>
 
-                <label className='registrationView__errorMessage'>{this.state.error}</label>
+                <label className='registrationView__errorMessage'>{this.props.error}</label>
 
                 <form className='registrationView__form' onSubmit={this.onSubmit}>
 
@@ -100,4 +87,17 @@ class Registration extends Component {
     }
 }
 
-export default Registration;
+const mapStateToProps = store => {
+    return {
+        error: store.Registration.error
+    }
+}
+  
+const mapDispatchToProps = dispatch => {
+    return {
+        registrationAction: (username, email, password, confirmPassword) => 
+            dispatch(registration(username, email, password, confirmPassword))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
